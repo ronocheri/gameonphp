@@ -5,7 +5,7 @@ if(!$con){
 die("could not connect".mysql_error());
 }
 mysql_select_db("GameOn",$con);
-$result = mysql_query("SELECT * FROM Field ");
+$result = mysql_query("SELECT * FROM User");
 $arr=array();
 while($row = mysql_fetch_assoc($result)){
 $arr[]=$row;
