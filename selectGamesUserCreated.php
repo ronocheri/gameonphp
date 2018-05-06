@@ -6,11 +6,9 @@ if(!$con){
 die("could not connect".mysql_error());
 }
 mysql_select_db("GameOn",$con);
-$result = mysql_query("SELECT * FROM Game inner join User on Game.creator_id='".$user."'
+$result = mysql_query("SELECT Game.*, User.first_name, User.last_name, Field.field_name, Field.city FROM Game inner join User on Game.creator_id='".$user."' inner join Field on Field.field_id=Game.game_location
 
-where  (Game.game_date>'".$_POST["date"]."') or (Game.game_date='".$_POST["date"]."' and Game.start_time>'".$_POST["time"]."')
-
-group by Game.game_id
+where ((Game.game_date>'".$_POST["date"]."') or (Game.game_date='".$_POST["date"]."' and Game.start_time>'".$_POST["time"]."')) and User.user_id=Game.creator_id
 
 order by game_date");
 
