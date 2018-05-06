@@ -6,7 +6,7 @@ if(!$con){
 die("could not connect".mysql_error());
 }
 mysql_select_db("GameOn",$con);
-$result = mysql_query("SELECT * FROM Game left outer join Game_invitation on Game.game_id=Game_invitation.game_id
+$result = mysql_query("SELECT Game.*, User.first_name, User.last_name, Field.field_name, Field.city FROM Game left outer join Game_invitation on Game.game_id=Game_invitation.game_id inner join Field on Field.field_id=Game.game_location inner join User on User.user_id=Game.creator_id
 where  ((Game_invitation.user_id<>'".$_POST["uname"]."') or  isnull(Game_invitation.user_id) or (Game_invitation.user_id='".$_POST["uname"]."' and Game_invitation.approve='waiting'))
 and Game.public_game='Yes' and ((Game.game_date>'".$_POST["date"]."') or (Game.game_date='".$_POST["date"]."' and Game.start_time>'".$_POST["time"]."'))
 group by Game.game_id
