@@ -1,7 +1,4 @@
 <?php
-$date1 = date_create($_POST['birthdate']);
-
-
 
 header('Content-Type: application/json');
 $con = mysql_connect( "173.194.106.92","gameon","shani123@");
