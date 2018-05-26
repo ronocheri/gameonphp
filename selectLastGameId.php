@@ -5,7 +5,7 @@ if(!$con){
 die("could not connect".mysql_error());
 }
 mysql_select_db("GameOn",$con);
-$result = mysql_query("SELECT game_id FROM Game ORDER BY game_id DESC LIMIT 1");
+$result = mysql_query("SELECT game_id FROM Game  WHERE Game.creator_id='".$_POST["picked_Users"]."' ORDER BY game_id DESC LIMIT 1");
 $arr=array();
 while($row = mysql_fetch_assoc($result)){
 $arr[]=$row;
